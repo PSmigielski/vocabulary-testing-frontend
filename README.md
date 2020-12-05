@@ -1,8 +1,6 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-To get words to the database i've used this [web scraper](https://github.com/PSmigielski/english-words-webscraper)
-
 
 ## Getting started
 
