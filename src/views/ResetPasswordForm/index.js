@@ -16,7 +16,7 @@ const ResetPasswordForm = () => {
     console.log("password2:", password2);
   };
   return (
-    <div className="loginWrapper">
+    <div className="resetPasswordWrapper">
       <Nav />
       <div className="container">
         <Form
