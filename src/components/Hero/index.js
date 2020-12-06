@@ -9,10 +9,10 @@ const Hero = () => {
         Przecwicz swoje słowictwo z języka angielskiego!
       </p>
       <div className="hero__buttons">
-        <Link to="/register">
+        <Link className="link" to="/register">
           <button className="hero__button">Rozpocznij</button>
         </Link>
-        <Link to="/login">
+        <Link className="link" to="/login">
           <button className="hero__button">Mam już konto</button>
         </Link>
       </div>
