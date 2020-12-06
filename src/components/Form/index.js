@@ -30,7 +30,7 @@ const Form = ({
       <div className="message">
         {messages === "Login" && (
           <p className="formContainer__paragraph">
-            Zapomniałeś hasło?<Link to="/reset-password"> Kliknij tutaj</Link>{" "}
+            Zapomniałeś hasło?<Link to="/forgot"> Kliknij tutaj</Link>{" "}
           </p>
         )}
         {messages === "Login" && (
