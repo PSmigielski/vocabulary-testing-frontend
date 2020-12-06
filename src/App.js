@@ -5,6 +5,7 @@ import ForgotPasswordForm from "./views/ ForgotPasswordForm";
 import Home from "./views/Home";
 import LoginForm from "./views/LoginForm";
 import RegisterForm from "./views/RegisterForm";
+import ResetPasswordForm from "./views/ResetPasswordForm";
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,9 @@ function App() {
       </Route>
       <Route path="/forgot">
         <ForgotPasswordForm />
+      </Route>
+      <Route path="/reset">
+        <ResetPasswordForm />
       </Route>
     </Switch>
   );
