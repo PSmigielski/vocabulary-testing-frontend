@@ -9,9 +9,10 @@ const Form = ({
   messages,
   children,
   handleSubmit,
+  error,
 }) => {
   let notification = "";
-  let errorMessage = "";
+  let errorMessage = error;
   return (
     <div className="formContainer" style={{ height: wrapperHeight }}>
       <p className="formContainer__header">{label}</p>
