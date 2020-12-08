@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import "./App.scss";
 import ForgotPasswordForm from "./views/ ForgotPasswordForm";
 import Home from "./views/Home";
@@ -11,6 +11,7 @@ import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   const location = useLocation();
+  const history = useHistory();
   return (
     <UserProvider>
       <Switch location={location} key={location.key}>
@@ -18,7 +19,7 @@ function App() {
           <Home />
         </Route>
         <Route path="/login">
-          <LoginForm />
+          <LoginForm history={history} />
         </Route>
         <Route path="/register">
           <RegisterForm />
