@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./index.scss";
 import Nav from "../../components/Nav";
 import { Link } from "react-router-dom";
@@ -7,14 +7,19 @@ import Form from "../../components/Form";
 import FormInput from "../../components/FormInput";
 import useInput from "../../hooks/useInput.js";
 import { UserContext } from "../../contexts/UserContext";
-
+import { MessageContext } from "../../contexts/MessageContext";
 import axios from "axios";
 
 const LoginForm = ({ history }) => {
   const [email, bindEmail] = useInput("");
   const [password, bindPassword] = useInput("");
+  //eslint-disable-next-line
   const [data, setData] = useContext(UserContext);
-  const [error, setError] = useState("");
+  //eslint-disable-next-line
+  const [error, notification, setError, setNotifncation, reset] = useContext(
+    MessageContext
+  );
+  const mounted = () => reset();
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -43,7 +48,7 @@ const LoginForm = ({ history }) => {
       });
   };
   return (
-    <div className="loginWrapper">
+    <div className="loginWrapper" onLoad={mounted}>
       <Nav />
       <div className="container">
         <Link to="/">

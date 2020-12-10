@@ -10,8 +10,9 @@ const Form = ({
   children,
   handleSubmit,
   error,
+  notification,
 }) => {
-  let notification = "";
+  let notificationMessage = notification;
   let errorMessage = error;
   return (
     <div className="formContainer" style={{ height: wrapperHeight }}>
@@ -23,7 +24,7 @@ const Form = ({
       >
         {children}
         <p className="error">{errorMessage}</p>
-        <p className="notification">{notification}</p>
+        <p className="notification">{notificationMessage}</p>
         <button type="submit" className="form__submit">
           {label}
         </button>
