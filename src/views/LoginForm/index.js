@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./index.scss";
 import Nav from "../../components/Nav";
 import { Link } from "react-router-dom";
@@ -19,7 +19,9 @@ const LoginForm = ({ history }) => {
   const [error, notification, setError, setNotifncation, reset] = useContext(
     MessageContext
   );
-  const mounted = () => reset();
+  useEffect(() => {
+    reset();
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -48,7 +50,7 @@ const LoginForm = ({ history }) => {
       });
   };
   return (
-    <div className="loginWrapper" onLoad={mounted}>
+    <div className="loginWrapper">
       <Nav />
       <div className="container">
         <Link to="/">
