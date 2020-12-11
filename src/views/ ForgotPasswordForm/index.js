@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./index.scss";
 import Nav from "../../components/Nav";
 import { Link } from "react-router-dom";
@@ -6,12 +6,33 @@ import Arrow from "../../components/Arrow";
 import Form from "../../components/Form";
 import FormInput from "../../components/FormInput";
 import useInput from "../../hooks/useInput.js";
+import { MessageContext } from "../../contexts/MessageContext";
+import axios from "axios";
 
 const ForgotPasswordForm = () => {
+  const [error, notification, setError, setNotification, reset] = useContext(
+    MessageContext
+  );
   const [email, bindEmail] = useInput("");
+  useEffect(() => {
+    reset();
+  }, []);
+  const initForgot = () => {
+    axios
+      .post("/user/reset-password", { email })
+      .then((response) => {
+        setNotification("email został wysłany");
+      })
+      .catch((error) => {
+        if (error.response.data.message === "Content can not be empty!")
+          setError("pole nie może być puste!");
+        if (error.response.data.message === "something went wrong")
+          setError("coś poszło nie tak spróbuj ponownie później");
+      });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("email:", email);
+    initForgot();
   };
   return (
     <div className="forgotPasswordWrapper">
@@ -26,6 +47,8 @@ const ForgotPasswordForm = () => {
           label="Zresetuj Hasło"
           messages="null"
           handleSubmit={handleSubmit}
+          error={error}
+          notification={notification}
         >
           <FormInput
             data={{
