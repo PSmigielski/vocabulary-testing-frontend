@@ -18,9 +18,8 @@ const RegisterForm = ({ history }) => {
   const [login, bindLogin] = useInput("");
   const [password1, bindPassword1] = useInput("");
   const [password2, bindPassword2] = useInput("");
-  useEffect(() => {
-    reset();
-  }, []);
+  // eslint-disable-next-line
+  useEffect(() => reset(), []);
   /* eslint-disable */
   const validatepass = (TestPassword) => {
     const re = /^(?=.*\d)(?=.*[a-z])(?=.*[\!\@\#\$\%\^\&\*\(\)\_\+\-\=])(?=.*[A-Z])(?!.*\s).{8,}$/;

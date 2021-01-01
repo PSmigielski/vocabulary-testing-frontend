@@ -19,9 +19,8 @@ const LoginForm = ({ history }) => {
   const [error, notification, setError, setNotifncation, reset] = useContext(
     MessageContext
   );
-  useEffect(() => {
-    reset();
-  }, []);
+  // eslint-disable-next-line
+  useEffect(() => reset(), []);
   const handleSubmit = (event) => {
     event.preventDefault();
     axios

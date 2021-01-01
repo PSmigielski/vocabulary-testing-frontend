@@ -14,9 +14,8 @@ const ForgotPasswordForm = () => {
     MessageContext
   );
   const [email, bindEmail] = useInput("");
-  useEffect(() => {
-    reset();
-  }, []);
+  // eslint-disable-next-line
+  useEffect(() => reset(), []);
   const initForgot = () => {
     axios
       .post("/user/reset-password", { email })
