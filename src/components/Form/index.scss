@@ -66,3 +66,46 @@ a{
       }
     }
   }
+@media screen and (max-width:1744px){
+  .formContainer{
+    width: 30%;
+  }
+}
+@media screen and (max-width:1500px){
+  .formContainer{
+    width: 37%;
+  }
+}
+@media screen and (max-width:1215px){
+  .formContainer{
+    width: 45%;
+  }
+}
+@media screen and (max-width:980px){
+  .formContainer{
+    width: 55%;
+  }
+}
+@media screen and (max-width:832px){
+  .formContainer{
+    width: 65%;
+  }
+}
+@media screen and (max-width:685px){
+  .formContainer{
+    width: 75%;
+    .formContainer__header{
+      font-size: 32px;
+    }
+  }
+}
+@media screen and (max-width:590px){
+  .formContainer{
+    width: 85%;
+  }
+}
+@media screen and (max-width:450px){
+  .formContainer{
+    width: 95%;
+  }
+}

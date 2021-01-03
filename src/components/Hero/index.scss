@@ -45,3 +45,50 @@ $mainColor: #4545ff;
         }
     }
 }
+@media screen and (max-width: 1464px){
+    .hero{
+        .hero__buttons{
+            width: 45%;
+        }
+    }
+}
+@media screen and (max-width: 1024px){
+    .hero{
+        .hero__paragraph{
+            width: 80%;
+        }
+        .hero__buttons{
+            width: 65%;
+        }
+    }
+}
+@media screen and (max-width: 776px){
+    .hero{
+        .hero__paragraph{
+            width:95%;
+        }
+        .hero__buttons{
+            width: 70%;
+        }
+    }
+}
+@media screen and (max-width: 668px){
+    .hero{
+        .hero__paragraph{
+            font-size: 24px;
+        }
+        .hero__button{
+            font-size: 18px;
+        }
+    }
+}
+@media screen and (max-width: 450px){
+    .hero{
+        .hero__buttons{
+            width: 85%;
+        }
+        .hero__button{
+            width: 80%;
+        }
+    }
+}

@@ -1,13 +1,4 @@
-
-  @font-face {
-  font-family: Poppins-Bold;
-  src: url('../../assets/fonts/Poppins-Bold.ttf');
-  }
-  @font-face {
-    font-family: Poppins-Regular;
-    src: url('../../assets/fonts/Poppins-Regular.ttf');
-  }
-  .resetPasswordWrapper{
+.VerifyWrapper{
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -22,9 +13,5 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-    }
-    .info{
-      font-size: 24px;
-      font-family: Poppins-Regular;
     }
   }

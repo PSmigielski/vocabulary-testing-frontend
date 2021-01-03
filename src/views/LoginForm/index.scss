@@ -14,18 +14,6 @@ src: url('../../assets/fonts/Poppins-Bold.ttf');
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  .nav{
-    background-color: $navbarColor;
-    width: 100%;
-    min-height: 10%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.4);
-    .nav__container{
-      width: 95%;
-    }
-  }
   .container{
     position: relative;
     height: 90%;

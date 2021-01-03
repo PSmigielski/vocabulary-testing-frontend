@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:4000/v1/api";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
