@@ -29,9 +29,12 @@ function App() {
           <Route path="/forgot">
             <ForgotPasswordForm />
           </Route>
-          <Route path="/reset">
-            <ResetPasswordForm />
-          </Route>
+          <Route
+            path="/reset/:token"
+            render={(routerProps) => {
+              return <ResetPasswordForm routerProps={routerProps} />;
+            }}
+          />
           <Route
             path="/verify/:login"
             render={(routerProps) => {

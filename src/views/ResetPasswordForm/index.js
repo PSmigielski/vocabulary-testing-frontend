@@ -1,19 +1,65 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import axios from "axios";
 import "./index.scss";
 import Nav from "../../components/Nav";
 import Form from "../../components/Form";
 import FormInput from "../../components/FormInput";
 import useInput from "../../hooks/useInput.js";
+import { MessageContext } from "../../contexts/MessageContext.js";
 
-const ResetPasswordForm = () => {
+const ResetPasswordForm = ({ routerProps }) => {
+  const token = routerProps.match.params.token;
   const [email, bindEmail] = useInput("");
   const [password1, bindPassword1] = useInput("");
   const [password2, bindPassword2] = useInput("");
+  // eslint-disable-next-line
+  const [error, notification, setError, setNotification, reset] = useContext(
+    MessageContext
+  );
+  /* eslint-disable */
+  useEffect(() => reset(), []);
+  const validatepass = (TestPassword) => {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[\!\@\#\$\%\^\&\*\(\)\_\+\-\=])(?=.*[A-Z])(?!.*\s).{8,}$/;
+    return re.test(TestPassword);
+  };
+  /* eslint-enable */
+  const verify = (password1, password2) => {
+    if (password1 !== password2) {
+      setError("Hasła nie są takie same");
+      return false;
+    }
+    if (!validatepass(password2)) {
+      setError(
+        "wpisz poprawne hasło minimum 8 znaków w tym minimum jeden znak zpecjalny, cyfrę i dużą literę"
+      );
+      return false;
+    }
+    return true;
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("email:", email);
-    console.log("password1:", password1);
-    console.log("password2:", password2);
+    if (verify(password1, password2))
+      axios
+        .put(`/user/reset-password/${token}`, {
+          email,
+          password: password1,
+        })
+        .then((res) => {
+          if (res.data.message === "password has been updated") {
+            setError("Hasło zostało zaktualizowane");
+          }
+        })
+        .catch((err) => {
+          if (err.response.data === "Token not found") {
+            setError("Nie odnaleziono tokena");
+          } else if (err.response.data === "user not found") {
+            setError("Nie ma takiego użytkownika");
+          } else if (err.response.data === "something went wrong") {
+            setError("Coś poszło nie tak");
+          } else if (err.response.data === "server error") {
+            setError("Błąd serwera spróbuj ponownie później");
+          }
+        });
   };
   return (
     <div className="resetPasswordWrapper">
@@ -25,6 +71,8 @@ const ResetPasswordForm = () => {
           label="Zresetuj hasło"
           messages="null"
           handleSubmit={handleSubmit}
+          error={error}
+          notification={notification}
         >
           <FormInput
             data={{
