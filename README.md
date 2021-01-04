@@ -11,7 +11,7 @@ To get a local copy up and running follow these simple example steps.
 
   - [NodeJS](https://nodejs.org/en/)
   - npm
-  - running api from [here] (https://github.com/PSmigielski/vocabulary-testing-API)
+  - running api from [here](https://github.com/PSmigielski/vocabulary-testing-API)
 
 ## Installation
 1. Clone this repo
