@@ -7,7 +7,7 @@ import LoginForm from "./views/LoginForm";
 import RegisterForm from "./views/RegisterForm";
 import ResetPasswordForm from "./views/ResetPasswordForm";
 import VerifyPage from "./views/VerifyPage";
-import { UserProvider } from "./contexts/UserContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import { MessageProvider } from "./contexts/MessageContext";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
   const history = useHistory();
   return (
     <MessageProvider>
-      <UserProvider>
+      <AuthProvider>
         <Switch location={location} key={location.key}>
           <Route path="/" exact>
             <Home />
@@ -42,7 +42,7 @@ function App() {
             }}
           />
         </Switch>
-      </UserProvider>
+      </AuthProvider>
     </MessageProvider>
   );
 }
