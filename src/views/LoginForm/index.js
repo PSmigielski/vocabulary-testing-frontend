@@ -6,15 +6,14 @@ import Arrow from "../../components/Arrow";
 import Form from "../../components/Form";
 import FormInput from "../../components/FormInput";
 import useInput from "../../hooks/useInput.js";
-import { UserContext } from "../../contexts/UserContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { MessageContext } from "../../contexts/MessageContext";
 import axios from "axios";
 
 const LoginForm = ({ history }) => {
   const [email, bindEmail] = useInput("");
   const [password, bindPassword] = useInput("");
-  //eslint-disable-next-line
-  const [data, setData] = useContext(UserContext);
+  const authContext = useContext(AuthContext);
   //eslint-disable-next-line
   const [error, notification, setError, setNotifncation, reset] = useContext(
     MessageContext
@@ -33,19 +32,15 @@ const LoginForm = ({ history }) => {
           setError("Zweryfikuj email by się zalogować");
         } else {
           setError("");
+          authContext.setAuthInfo(response.data);
+          console.log(response.data);
           history.push("/dashboard");
-          setData((prevState) => ({
-            ...prevState,
-            id: response.data.id,
-            login: response.data.login,
-            email: response.data.email,
-            JWT: response.data.token,
-          }));
         }
       })
       .catch((err) => {
         if (err.response.data.message === "credentials don't match")
           setError("Podano złe dane logowania");
+        throw err;
       });
   };
   return (
