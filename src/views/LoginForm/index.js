@@ -33,14 +33,12 @@ const LoginForm = ({ history }) => {
         } else {
           setError("");
           authContext.setAuthInfo(response.data);
-          console.log(response.data);
           history.push("/dashboard");
         }
       })
       .catch((err) => {
         if (err.response.data.message === "credentials don't match")
           setError("Podano złe dane logowania");
-        throw err;
       });
   };
   return (
