@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "gsap": "^3.5.1",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
@@ -43,9 +43,9 @@
   },
   "devDependencies": {
     "css-loader": "^5.0.1",
+    "react-context-devtool": "^2.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0"
   },
   "proxy": "http://localhost:4000"
 }
-
