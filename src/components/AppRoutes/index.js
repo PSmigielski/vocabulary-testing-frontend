@@ -8,6 +8,7 @@ import ResetPasswordForm from "../../views/ResetPasswordForm";
 import VerifyPage from "../../views/VerifyPage";
 import Dashboard from "../../views/Dashboard";
 import { AuthContext } from "../../contexts/AuthContext";
+import AppShell from "../AppShell";
 
 const AppRoutes = () =>{
     const auth = useContext(AuthContext);
@@ -40,7 +41,10 @@ const AppRoutes = () =>{
           />
           <Route
             path="/dashboard"
-            render={() => auth.isAuthenticated() ? <Dashboard /> : <Redirect to="/" />}
+            render={() => auth.isAuthenticated() ? 
+              (<AppShell>
+                <Dashboard />
+              </AppShell>) : <Redirect to="/" />}
             />
         </Switch>
     )
