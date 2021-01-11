@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     expiresAt,
     userInfo: userInfo ? JSON.parse(userInfo) : {},
   });
+  const [isLoggedIn, setIsLoggedIn ] = useState(false)
   const setAuthInfo = ({ expiresAt, userInfo }) => {
     sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
     sessionStorage.setItem("expiresAt", expiresAt);
@@ -23,12 +24,20 @@ export const AuthProvider = ({ children }) => {
     }
     return new Date().getTime() / 1000 < authState.expiresAt;
   };
+  const logout = () => {
+    setIsLoggedIn(false);
+    sessionStorage.removeItem("userInfo");
+    sessionStorage.removeItem("expiresAt");
+  }
   return (
     <AuthContext.Provider
       value={{
         authState,
         setAuthInfo: (authInfo) => setAuthInfo(authInfo),
         isAuthenticated,
+        isLoggedIn,
+        setIsLoggedIn,
+        logout
       }}
     >
       {children}
