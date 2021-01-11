@@ -1,5 +1,5 @@
 import React,{useContext} from "react";
-import { Switch, Route, useLocation, useHistory,Redirect } from "react-router-dom";
+import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import ForgotPasswordForm from "../../views/ForgotPasswordForm";
 import Home from "../../views/Home";
 import LoginForm from "../../views/LoginForm";
@@ -12,17 +12,16 @@ import { AuthContext } from "../../contexts/AuthContext";
 const AppRoutes = () =>{
     const auth = useContext(AuthContext);
     const location = useLocation();
-    const history = useHistory();
     return(
         <Switch location={location} key={location.key}>
           <Route path="/" exact>
             <Home />
           </Route>
           <Route path="/login">
-            <LoginForm history={history} />
+            <LoginForm />
           </Route>
           <Route path="/register">
-            <RegisterForm history={history} />
+            <RegisterForm />
           </Route>
           <Route path="/forgot">
             <ForgotPasswordForm />
