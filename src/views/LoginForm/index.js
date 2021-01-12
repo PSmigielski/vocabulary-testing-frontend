@@ -16,7 +16,7 @@ const LoginForm = () => {
   const authContext = useContext(AuthContext);
   const history = useHistory();
   //eslint-disable-next-line
-  const [error, notification, setError, setNotifncation, reset] = useContext(
+  const [error, , setError,, reset] = useContext(
     MessageContext
   );
   // eslint-disable-next-line

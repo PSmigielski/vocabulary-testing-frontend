@@ -21,8 +21,25 @@ const AppRoutes = () =>{
         auth.logout();
         auth.setIsLoggedIn(false);
       }).catch(err => {
-        alert(err.response.data.message)
+        history.push('/');
       })
+    }
+    const refreshAccessToken = () => {
+      axios.post('/user/refresh').then(res=>{
+        const userInfo = auth.authState.userInfo;
+        auth.setAuthInfo({expiresAt:res.data.expiresAt, userInfo})
+        sessionStorage.setItem("expiresAt", res.data.expiresAt);
+        auth.setIsLoggedIn(true);
+        history.push('/dashboard')
+        console.log(res)
+        return (
+          <AppShell>
+            <Dashboard />
+          </AppShell>
+        )
+      }).catch(err =>{
+        console.log(err); 
+        handleLogout()});
     }
     return(
         <Switch location={location} key={location.key}>
@@ -55,7 +72,7 @@ const AppRoutes = () =>{
             render={() => auth.isAuthenticated() ? 
               (<AppShell>
                 <Dashboard />
-              </AppShell>) : handleLogout()}
+              </AppShell>) : refreshAccessToken()}
             />
         </Switch>
     )
