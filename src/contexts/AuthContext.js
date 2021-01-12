@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
@@ -24,6 +24,8 @@ export const AuthProvider = ({ children }) => {
     }
     return new Date().getTime() / 1000 < authState.expiresAt;
   };
+  //eslint-disable-next-line
+  useEffect(()=>setIsLoggedIn(isAuthenticated()), []);
   const logout = () => {
     setIsLoggedIn(false);
     sessionStorage.removeItem("userInfo");
