@@ -28,26 +28,21 @@ const AppRoutes = () =>{
       });
     }
     const refreshAccessToken = () => {
-      console.log(axios.defaults.headers);
-      axios.get('/user/csrf-token').then(res =>{
-        axios.defaults.headers['csrf-token'] = res.data.csrfToken
-        axios.post(`/user/refresh?username=${auth.authState.userInfo.username}`).then(res=>{
-          const userInfo = auth.authState.userInfo;
-          auth.setAuthInfo({expiresAt:res.data.expiresAt, userInfo})
-          sessionStorage.setItem("expiresAt", res.data.expiresAt);
-          auth.setIsLoggedIn(true);
-          history.push('/dashboard')
-          return (
-            <AppShell>
-              <Dashboard />
-            </AppShell>
-          )
-        }).catch(err =>{
-          console.log(err); 
-          handleLogout()
-        });
+      axios.post(`/user/refresh?username=${auth.authState.userInfo.username}`).then(res=>{
+        const userInfo = auth.authState.userInfo;
+        auth.setAuthInfo({expiresAt:res.data.expiresAt, userInfo})
+        sessionStorage.setItem("expiresAt", res.data.expiresAt);
+        auth.setIsLoggedIn(true);
+        history.push('/dashboard')
+        return (
+          <AppShell>
+            <Dashboard />
+          </AppShell>
+        )
+      }).catch(err =>{
+        console.log(err); 
+        handleLogout()
       });
-    
     }
     return(
         <Switch location={location} key={location.key}>
@@ -80,7 +75,8 @@ const AppRoutes = () =>{
             render={() => auth.isAuthenticated() ? 
               (<AppShell>
                 <Dashboard />
-              </AppShell>) : refreshAccessToken()}
+              </AppShell>) : auth.refreshCsrfToken(() => refreshAccessToken())
+              }
             />
         </Switch>
     )
