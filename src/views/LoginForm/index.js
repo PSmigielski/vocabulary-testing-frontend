@@ -1,22 +1,22 @@
 import React, { useContext, useEffect } from "react";
 import "./index.scss";
 import Nav from "../../components/Nav";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Arrow from "../../components/Arrow";
 import Form from "../../components/Form";
 import FormInput from "../../components/FormInput";
 import useInput from "../../hooks/useInput.js";
-import { UserContext } from "../../contexts/UserContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { MessageContext } from "../../contexts/MessageContext";
 import axios from "axios";
 
-const LoginForm = ({ history }) => {
+const LoginForm = () => {
   const [email, bindEmail] = useInput("");
   const [password, bindPassword] = useInput("");
+  const authContext = useContext(AuthContext);
+  const history = useHistory();
   //eslint-disable-next-line
-  const [data, setData] = useContext(UserContext);
-  //eslint-disable-next-line
-  const [error, notification, setError, setNotifncation, reset] = useContext(
+  const [error, , setError,, reset] = useContext(
     MessageContext
   );
   // eslint-disable-next-line
@@ -33,20 +33,15 @@ const LoginForm = ({ history }) => {
           setError("Zweryfikuj email by się zalogować");
         } else {
           setError("");
+          authContext.setIsLoggedIn(true);
+          authContext.setAuthInfo(response.data);
           history.push("/dashboard");
-          setData((prevState) => ({
-            ...prevState,
-            id: response.data.id,
-            login: response.data.login,
-            email: response.data.email,
-            JWT: response.data.token,
-          }));
         }
       })
       .catch((err) => {
         if (err.response.data.message === "credentials don't match")
           setError("Podano złe dane logowania");
-      });
+        });
   };
   return (
     <div className="loginWrapper">

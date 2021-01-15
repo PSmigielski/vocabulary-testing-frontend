@@ -23,8 +23,8 @@ To get a local copy up and running follow these simple example steps.
 ```
     npm install
 ```
-1. copy, rename .env.example to .env and add your api host credentials 
-2. run application
+3. copy, rename .env.example to .env and add your api host credentials 
+4. run application
 ```
     npm start
 ```

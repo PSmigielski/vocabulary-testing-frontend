@@ -4,6 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from "axios";
+import { debugContextDevtool } from "react-context-devtool";
+
 axios.defaults.baseURL = "/v1/api";
 ReactDOM.render(
   <React.StrictMode>
@@ -13,6 +15,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+debugContextDevtool(document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

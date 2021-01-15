@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "./index.scss";
 import Nav from "../../components/Nav";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Arrow from "../../components/Arrow";
 import Form from "../../components/Form";
 import FormInput from "../../components/FormInput";
@@ -10,7 +10,8 @@ import useInput from "../../hooks/useInput.js";
 import { MessageContext } from "../../contexts/MessageContext";
 import axios from "axios";
 
-const RegisterForm = ({ history }) => {
+const RegisterForm = () => {
+  const history = useHistory();
   const [error, notification, setError, setNotification, reset] = useContext(
     MessageContext
   );
